@@ -5,10 +5,12 @@ node {
    def functions = load 'src/functions.groovy'
    functions()
    def usit      = load 'src/usit.groovy'
-   usit()
-   usit.echoHelper(functions.test1, functions.test2)
+   usit(functions.wrapper, functions.test1, functions.test2)
+   usit.echoHelper()
 
-   def wrapper = load 'src/PipelineWrapper.groovy'
+
+
+   def wrapper = load 'src/de.se.jenkinsfile.groovy.PipelineWrapper.groovy'
    wrapper()
    wrapper.stage('hallo'){
         echo "hallo2"
