@@ -1,6 +1,5 @@
 //Jenkinsfile example
 //TODO: Jenkinsfile Methoden typisieren
-//github
 node {
    checkout scm
    def functions = load 'src/functions.groovy'
@@ -8,4 +7,11 @@ node {
    def usit      = load 'src/usit.groovy'
    usit()
    usit.echoHelper(functions.test1, functions.test2)
+
+   def wrapper = load 'src/PipelineWrapper.groovy'
+   wrapper()
+   wrapper.stage('hallo'){
+        echo "hallo2"
+   }
+
 }
