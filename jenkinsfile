@@ -7,7 +7,7 @@ node {
 //   def usit      = load 'src/usit.groovy'
 //   usit(functions.wrapper, functions.test1, functions.test2)
 
-   def wrapper = load 'src/de.se.jenkinsfile.groovy.PipelineWrapper.groovy'
+   def wrapper = load 'src/de/se/jenkinsfile/groovy/PipelineWrapper.groovy'
    wrapper()
    wrapper.staging('hallo'){
         echo "hallo2"
