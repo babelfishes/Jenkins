@@ -4,7 +4,7 @@ package de.se.jenkinsfile.groovy
 /**
  * Created by debian-jenkins on 30.04.17.
  */
-class Pipeline {
+class Pipeline implements Serializable{
 
     def _this
 
