@@ -16,7 +16,7 @@ class Pipeline implements Serializable{
         _this.echo(line)
     }
 
-    def stage(def name, def closure) {
+    def staging(def name, def closure) {
         _this.stage(closure(name))
     }
 }
