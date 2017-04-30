@@ -9,6 +9,7 @@ node {
 
    def wrapper = load 'src/de/se/jenkinsfile/groovy/PipelineWrapper.groovy'
    wrapper()
+   wrapper.echo("hallo")
    wrapper.staging('hallo'){
         echo "hallo2"
    }
