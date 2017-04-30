@@ -1,0 +1,10 @@
+//Jenkinsfile example
+//TODO: Jenkinsfile Methoden typisieren
+//github
+node {
+   def functions = load 'src/functions.groovy'
+   functions()
+   def usit      = load 'src/usit.groovy'
+   usit()
+   usit.echoHelper(functions.test1, functions.test2)
+}
