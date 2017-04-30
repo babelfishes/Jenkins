@@ -6,9 +6,6 @@ node {
    functions()
    def usit      = load 'src/usit.groovy'
    usit(functions.wrapper, functions.test1, functions.test2)
-   usit.echoHelper()
-
-
 
    def wrapper = load 'src/de.se.jenkinsfile.groovy.PipelineWrapper.groovy'
    wrapper()
