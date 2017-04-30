@@ -4,7 +4,7 @@
 node {
    checkout scm
    def functions = load 'src/functions.groovy'
-   functions("${projectWorkspace}@script/src")
+   functions()
    def usit      = load 'src/usit.groovy'
    usit()
    usit.echoHelper(functions.test1, functions.test2)
