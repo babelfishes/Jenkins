@@ -2,9 +2,9 @@
 //TODO: Jenkinsfile Methoden typisieren
 //github
 node {
-   def functions = load 'src/functions.groovy'
-   functions()
-   def usit      = load 'src/usit.groovy'
+   def functions = load '${projectWorkspace}@script/src/functions.groovy'
+   functions("${projectWorkspace}@script/src")
+   def usit      = load '${projectWorkspace}@script/src/usit.groovy'
    usit()
    usit.echoHelper(functions.test1, functions.test2)
 }

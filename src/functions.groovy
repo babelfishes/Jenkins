@@ -5,10 +5,10 @@ import groovy.transform.Field
 @Field def test1
 @Field def test2
 
-def call() {
-    def test1Load = load 'de/se/jenkinsfile/groovy/test1.groovy'
+def call(rootDir) {
+    def test1Load = load "${rootDir}/de/se/jenkinsfile/groovy/test1.groovy"
     test1=test1Load()
-    def test2Load = load 'de/se/jenkinsfile/groovy/test2.groovy'
+    def test2Load = load "${rootDir}/de/se/jenkinsfile/groovy/test2.groovy"
     test2=test2Load()
 }
 
