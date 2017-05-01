@@ -2,16 +2,9 @@
 //TODO: Jenkinsfile Methoden typisieren
 node {
    checkout scm
-//   def functions = load 'src/functions.groovy'
-//   functions()
-//   def usit      = load 'src/usit.groovy'
-//   usit(functions.wrapper, functions.test1, functions.test2)
-
-   def wrapper = load 'src/de/se/jenkinsfile/groovy/PipelineWrapper.groovy'
-   wrapper()
-   wrapper.echo("hallo")
-   wrapper.staging 'hallo', {
-        echo "hallo2"
-   }
+   def functions = load 'src/main/groovy/functions.pipe'
+   functions()
+   echo functions.test1.testconstant
+   echo functions.test2.testconstant
 
 }

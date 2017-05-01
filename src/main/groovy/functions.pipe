@@ -1,0 +1,17 @@
+#!groovy
+
+import groovy.transform.Field
+
+@Field def test1
+@Field def test2
+@Field def wrapper
+
+def call() {
+    def test1Load = load "src/main/grovy/de/se/jenkinsfile/test1.groovy"
+    test1=test1Load()
+    def test2Load = load "src/main/grovy/de/se/jenkinsfile/test2.groovy"
+    test2=test2Load()
+}
+
+
+return this;

@@ -1,5 +1,5 @@
 #!groovy
-package de.se.jenkinsfile.groovy
+package de.se.jenkinsfile
 
 /**
  * Created by debian-jenkins on 30.04.17.

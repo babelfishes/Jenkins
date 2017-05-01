@@ -1,5 +1,5 @@
 #!groovy
-package de.se.jenkinsfile.groovy
+package de.se.jenkinsfile
 
 // Stage Compile
 class Testit2 implements Serializable{
