@@ -2,6 +2,8 @@
 package de.se.jenkinsfile
 
 import com.cloudbees.groovy.cps.NonCPS
+import java.util.ArrayList
+
 
 // Stage Compile
 class Testit1 implements Serializable{
@@ -9,9 +11,11 @@ class Testit1 implements Serializable{
 
     def _this
     def testconstant = "testme1"
+    ArrayList list
 
-    Testit1(__this) {
+    Testit1(__this, ArrayList _list) {
         _this=__this
+        list = _list
     }
 
     def getTestconstant() {
@@ -44,8 +48,8 @@ class Testit1 implements Serializable{
 def call() {
 }
 
-Testit1 createInstance() {
-    return new Testit1(this)
+Testit1 createInstance(def liste) {
+    return new Testit1(this, liste)
 }
 
 return this;

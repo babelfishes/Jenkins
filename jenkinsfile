@@ -1,5 +1,6 @@
 //Jenkinsfile example
 //TODO: Jenkinsfile Methoden typisieren
+
 node {
    checkout scm
    def functions = load 'src/main/groovy/functions.pipe'
