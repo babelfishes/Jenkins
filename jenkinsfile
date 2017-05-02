@@ -6,5 +6,6 @@ node {
    functions()
    echo functions.test1.testconstant
    echo functions.test2.testconstant
+   functions.test1.useShell(sh)
 
 }
