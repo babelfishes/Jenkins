@@ -7,5 +7,6 @@ node {
    echo functions.test1.testconstant
    echo functions.test2.testconstant
    functions.test1.useShell()
+   echo functions.test1.mvn
 
 }
