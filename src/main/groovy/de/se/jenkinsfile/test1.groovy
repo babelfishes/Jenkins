@@ -35,7 +35,7 @@ class Testit1 implements Serializable{
 
     @NonCPS
     def senMail() {
-        _this.mail(to: "${committer}@ppi.de", subject: "${headline}", body: text)
+        _this.mail(to: "rs@ppi.de", subject: "headline", body: "TEXT")
     }
 
 
