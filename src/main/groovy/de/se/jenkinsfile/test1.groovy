@@ -28,8 +28,7 @@ class Testit1 implements Serializable{
 
     @NonCPS
     def getMvn() {
-        def mvnTool = _this.tool('Maven3')
-        return "${mvnTool}/bin/mvn"
+        return "${_this.tool('Maven3')}/bin/mvn"
     }
 
     @NonCPS
