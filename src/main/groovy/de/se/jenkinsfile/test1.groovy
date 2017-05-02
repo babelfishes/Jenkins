@@ -42,7 +42,9 @@ class Testit1 implements Serializable{
 }
 
 def call() {
-    //TODO createInstance
+}
+
+Testit1 createInstance() {
     return new Testit1(this)
 }
 

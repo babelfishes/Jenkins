@@ -8,7 +8,8 @@ import groovy.transform.Field
 
 def call() {
     def test1Load = load "src/main/groovy/de/se/jenkinsfile/test1.groovy"
-    test1=test1Load()
+    test1Load()
+    test1=test1Load.createInstance()
     def test2Load = load "src/main/groovy/de/se/jenkinsfile/test2.groovy"
     test2=test2Load()
 }
