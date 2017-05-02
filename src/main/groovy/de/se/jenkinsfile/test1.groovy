@@ -28,6 +28,11 @@ class Testit1 implements Serializable{
         return "${mvnTool}/bin/mvn"
     }
 
+    @NonCPS
+    def getBuildNumber() {
+        return _this.env.BUILD_NUMBER
+    }
+
 }
 
 def call() {
