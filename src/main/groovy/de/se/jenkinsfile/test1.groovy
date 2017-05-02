@@ -18,7 +18,7 @@ class Testit1 implements Serializable{
     }
 
     def useShell() {
-        _this.sh "echo hallo"
+        _this.sh("echo hallo")
     }
 
 
