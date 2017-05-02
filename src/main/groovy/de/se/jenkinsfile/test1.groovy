@@ -19,7 +19,7 @@ class Testit1 implements Serializable{
     }
 
     def getTestconstant() {
-        return "hallo ${testconstant}"
+        return "${list} hallo ${testconstant}"
     }
 
     def useShell() {
