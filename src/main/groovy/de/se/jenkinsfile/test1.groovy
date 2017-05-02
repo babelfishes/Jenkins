@@ -26,9 +26,13 @@ class Testit1 implements Serializable{
         _this.sh("echo hallo")
     }
 
-    @NonCPS
     def getMvn() {
-        return "${_this.tool('Maven3')}/bin/mvn"
+        return "${_getMvn()}/bin/mvn"
+    }
+
+    @NonCPS
+    def _getMvn() {
+        return _this.tool('Maven3')
     }
 
     @NonCPS
