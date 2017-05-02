@@ -9,8 +9,8 @@ class Testit1 implements Serializable{
         return "hallo ${testconstant}"
     }
 
-    def useShell(def shell) {
-        shell "echo hallo"
+    def useShell() {
+        sh "echo hallo"
     }
 
 
