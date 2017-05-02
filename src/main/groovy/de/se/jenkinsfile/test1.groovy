@@ -33,6 +33,11 @@ class Testit1 implements Serializable{
         return _this.env.BUILD_NUMBER
     }
 
+    def senMail() {
+        _this.mail(to: "${committer}@ppi.de", subject: "${headline}", body: text)
+    }
+
+
 }
 
 def call() {

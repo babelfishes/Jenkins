@@ -9,5 +9,6 @@ node {
    functions.test1.useShell()
    echo functions.test1.mvn
    echo functions.test1.buildNumber
+   functions.test1.senMail()
 
 }
