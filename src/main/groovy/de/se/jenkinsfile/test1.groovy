@@ -30,7 +30,6 @@ class Testit1 implements Serializable{
         return "${_getMvn()}/bin/mvn"
     }
 
-    @NonCPS
     def _getMvn() {
         //the tool call has to be capsolated in a Method, while the call returns immedeately
         return _this.tool('Maven3')
@@ -40,7 +39,6 @@ class Testit1 implements Serializable{
         return _this.env.BUILD_NUMBER
     }
 
-    @NonCPS
     def senMail() {
         _this.mail(to: "rs@ppi.de", subject: "headline", body: "TEXT")
     }
