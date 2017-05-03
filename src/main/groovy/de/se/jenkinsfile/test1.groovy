@@ -32,10 +32,10 @@ class Testit1 implements Serializable{
 
     @NonCPS
     def _getMvn() {
+        //the tool call has to be capsolated in a Method, while the call returns immedeately
         return _this.tool('Maven3')
     }
 
-    @NonCPS
     def getBuildNumber() {
         return _this.env.BUILD_NUMBER
     }

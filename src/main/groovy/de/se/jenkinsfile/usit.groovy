@@ -7,6 +7,9 @@ class Usit implements Serializable {
     def Testit1 test11
     def Testit2 test22
 
+    Usit() {
+
+    }
     Usit(Pipeline pipe, Testit1 test1, Testit2 test2) {
         pipeline = pipe
         test11 = test1
@@ -20,7 +23,11 @@ class Usit implements Serializable {
         }
     }
 
-}
+    String getTph_SONAR_CACHE() {
+        return "SONAR_CACHE"
+    }
+
+    }
 
 
 def call(Pipeline pipeline, Testit1 test11, Testit2 test22) {

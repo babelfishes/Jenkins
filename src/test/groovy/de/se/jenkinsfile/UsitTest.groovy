@@ -10,9 +10,9 @@ class UsitTest extends Specification {
 
     //TODO Mock fuer jenkinsfile
 
-    def "checkStage"() {
-        when: def usit = new Usit(new Pipeline("hallo"), new Testit1(), new Testit2())
-        then: usit.runInStage("hallo ") == "test"
+    def "checkValue"() {
+        when: def usit = new Usit()
+        then: usit.tph_SONAR_CACHE == "SONAR_CACHE"
     }
 
 
