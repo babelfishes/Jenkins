@@ -17,6 +17,7 @@ class ClassLoader implements Serializable {
 
     }
 
+
     def loadClasses(ClassLoader classLoader,def startPath) {
         //loading all classes typeless
         //in the right order, so that every import statement could be fulfilled
@@ -24,7 +25,7 @@ class ClassLoader implements Serializable {
         processContextLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessContext_Script.groovy")
         processALoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessA_Script.groovy")
         processBLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessB_Script.groovy")
-        def classLoaderProxyLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/classloader/ClassLoaderProxy_Script.groovy")
+        def classLoaderProxyLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/classloader/InstanceCreator_Script.groovy")
         def mainLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/Main_Script.groovy")
 
         pipeline = initClass(pipelineLoader)

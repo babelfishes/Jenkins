@@ -1,7 +1,7 @@
 #!groovy
 package de.se.jenkinsfile
 
-import de.se.jenkinsfile.classloader.ClassLoaderProxy
+import de.se.jenkinsfile.classloader.InstanceCreator
 import de.se.jenkinsfile.pipeline.Pipeline
 
 // import can be used, because these classes are loaded before
@@ -15,10 +15,10 @@ import de.se.jenkinsfile.processes.ProcessContext
  */
 class Main implements Serializable {
 
-    ClassLoaderProxy classloader
+    InstanceCreator classloader
     Pipeline pipeline
 
-    Main(ClassLoaderProxy _classloader, Pipeline _pipeline) {
+    Main(InstanceCreator _classloader, Pipeline _pipeline) {
         classloader = _classloader
         pipeline = _pipeline
     }
@@ -65,7 +65,7 @@ class Main implements Serializable {
  }
 
 
-Main createInstance(ClassLoaderProxy classloader, Pipeline pipeline) {
+Main createInstance(InstanceCreator classloader, Pipeline pipeline) {
     return new Main(classloader, pipeline)
 }
 
