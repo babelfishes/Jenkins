@@ -1,7 +1,9 @@
 #!groovy
 package de.se.jenkinsfile
 
+// import can be used, because these classes are loaded befere
 import de.se.jenkinsfile.Pipeline
+import de.se.jenkinsfile.ProcessContext
 
 class ProcessA implements Serializable {
 
@@ -11,8 +13,8 @@ class ProcessA implements Serializable {
         pipeline = pipe
     }
 
-    def run(name) {
-
+    def run(String name, ProcessContext context) {
+        context.paramA += "start ProcessA;"
         pipeline.stage name , {
             pipeline.parallel(p1: {
                 pipeline.echo "P3"
@@ -20,6 +22,7 @@ class ProcessA implements Serializable {
                 pipeline.echo "P4"
             })
         }
+        context.paramA += "end ProcessA;"
     }
 
  }

@@ -1,7 +1,6 @@
 #!groovy
 package de.se.jenkinsfile
 
-import de.se.jenkinsfile.ClassLoader
 
 /**
  * Created by debian-jenkins on 30.04.17.
@@ -9,11 +8,9 @@ import de.se.jenkinsfile.ClassLoader
 class Pipeline implements Serializable{
 
     def _this
-    ClassLoader classLoader
 
-    Pipeline(def __this, ClassLoader _classLoader) {
+    Pipeline(def __this) {
         _this=__this
-        classLoader = _classLoader
     }
 
     def echo(def line) {
@@ -42,8 +39,8 @@ class Pipeline implements Serializable{
     }
 }
 
-Pipeline createInstance(ClassLoader _classLoader) {
-    return new Pipeline(this,_classLoader)
+Pipeline createInstance() {
+    return new Pipeline(this)
 }
 
 Pipeline call() {
