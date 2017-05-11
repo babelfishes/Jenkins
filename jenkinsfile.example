@@ -1,0 +1,8 @@
+node {
+
+    def classLoaderLoad = load '/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ClassLoader_Script.groovy'
+    classLoaderLoad()
+    def classLoader = classLoaderLoad.createInstance()
+    classLoader.loadClasses(classLoader)
+    classLoader.mainProgramm.run("this is my main process")
+}
