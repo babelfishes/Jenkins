@@ -1,9 +1,9 @@
 #!groovy
-package de.se.jenkinsfile
+package de.se.jenkinsfile.classloader
 
 class ClassLoader implements Serializable {
 
-    //loaded classes must be untyped
+    //loaded classes must be untyped at this time
     def processALoader
     def processBLoader
     def processContextLoader
@@ -20,11 +20,11 @@ class ClassLoader implements Serializable {
     def loadClasses(ClassLoader classLoader,def startPath) {
         //loading all classes typeless
         //in the right order, so that every import statement could be fulfilled
-        pipelineLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/Pipeline_Script.groovy")
-        processContextLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/ProcessContext_Script.groovy")
-        processALoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/ProcessA_Script.groovy")
-        processBLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/ProcessB_Script.groovy")
-        def classLoaderProxyLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/ClassLoaderProxy_Script.groovy")
+        pipelineLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/pipeline/Pipeline_Script.groovy")
+        processContextLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessContext_Script.groovy")
+        processALoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessA_Script.groovy")
+        processBLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/processes/ProcessB_Script.groovy")
+        def classLoaderProxyLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/classloader/ClassLoaderProxy_Script.groovy")
         def mainLoader = loadClass("${startPath}/src/main/groovy/de/se/jenkinsfile/Main_Script.groovy")
 
         pipeline = initClass(pipelineLoader)
@@ -50,7 +50,7 @@ class ClassLoader implements Serializable {
         return loader.createInstance()
     }
 
- }
+}
 
 
 ClassLoader createInstance() {

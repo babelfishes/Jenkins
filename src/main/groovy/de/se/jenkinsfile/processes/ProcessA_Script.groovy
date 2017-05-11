@@ -1,9 +1,8 @@
 #!groovy
-package de.se.jenkinsfile
+package de.se.jenkinsfile.processes
 
 // import can be used, because these classes are loaded befere
-import de.se.jenkinsfile.Pipeline
-import de.se.jenkinsfile.ProcessContext
+import de.se.jenkinsfile.pipeline.Pipeline
 
 class ProcessA implements Serializable {
 

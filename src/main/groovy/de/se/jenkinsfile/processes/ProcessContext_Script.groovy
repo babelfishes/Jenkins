@@ -1,5 +1,5 @@
 #!groovy
-package de.se.jenkinsfile
+package de.se.jenkinsfile.processes
 
 class ProcessContext implements Serializable {
 

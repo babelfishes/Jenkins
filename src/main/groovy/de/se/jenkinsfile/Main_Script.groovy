@@ -1,12 +1,13 @@
 #!groovy
 package de.se.jenkinsfile
 
+import de.se.jenkinsfile.classloader.ClassLoaderProxy
+import de.se.jenkinsfile.pipeline.Pipeline
+
 // import can be used, because these classes are loaded before
-import de.se.jenkinsfile.ClassLoaderProxy
-import de.se.jenkinsfile.Pipeline
-import de.se.jenkinsfile.ProcessA
-import de.se.jenkinsfile.ProcessB
-import de.se.jenkinsfile.ProcessContext
+import de.se.jenkinsfile.processes.ProcessA
+import de.se.jenkinsfile.processes.ProcessB
+import de.se.jenkinsfile.processes.ProcessContext
 
 
 /**

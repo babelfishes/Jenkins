@@ -1,14 +1,12 @@
 #!groovy
-package de.se.jenkinsfile
+package de.se.jenkinsfile.classloader
 
-import de.se.jenkinsfile.ProcessA
-import de.se.jenkinsfile.ProcessB
-import de.se.jenkinsfile.ProcessContext
-import de.se.jenkinsfile.ClassLoader
-
+import de.se.jenkinsfile.processes.ProcessA
+import de.se.jenkinsfile.processes.ProcessB
+import de.se.jenkinsfile.processes.ProcessContext
 
 /**
- * This class creates typed instances of given Classes for the main workflow.
+ * This class can create typed instances of Classes for the main workflow.
  * Therefore the main class could not be loaded here
  */
 class ClassLoaderProxy implements Serializable {

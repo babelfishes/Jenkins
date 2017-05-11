@@ -1,9 +1,11 @@
 #!groovy
-package de.se.jenkinsfile
+package de.se.jenkinsfile.pipeline
 
 
 /**
- * Created by debian-jenkins on 30.04.17.
+ * Typed wrapper for the pipeline dsl.
+ * Here are some examples.
+ * Extend with your own functions.
  */
 class Pipeline implements Serializable{
 
@@ -18,17 +20,16 @@ class Pipeline implements Serializable{
     }
 
     def stage(def name, def closure) {
-        _this.stage "STAGE:${name}", closure
+        _this.stage "${name}", closure
     }
 
     def parallel(def closure) {
         _this.parallel closure
     }
 
-    def shellWithOut(def command) {
-        _this.echo "run shell command[${command}]"
+    def shellWithStdOut(def command) {
         def retValue = _this.sh (script: "${command}", returnStdout: true)
-        _this.echo "run shell command[${command}] returns [${retValue}]"
+        echo "shell command[${command}] returns [${retValue}]"
         return retValue
     }
 
