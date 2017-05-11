@@ -16,5 +16,5 @@ node {
     classLoaderLoad()
     def classLoader = classLoaderLoad.createInstance()
     classLoader.loadClasses(classLoader,'.')
-    classLoader.main.run("this is my main process")
+    classLoader.main.run("here starts the main process")
 }
