@@ -4,11 +4,11 @@ package de.se.jenkinsfile
 class ClassLoader implements Serializable {
 
     //loaded classes must be untyped
-    def processA
-    def processB
-    def processContext
+    def processALoader
+    def processBLoader
+    def processContextLoader
     def main
-    def pipeline
+    def pipelineLoader
     def _this
 
     ClassLoader(def __this) {
@@ -19,19 +19,13 @@ class ClassLoader implements Serializable {
     def loadClasses(ClassLoader classLoader) {
         //loading all classes typeless
         //in the right order, so that every import statement could be fulfilled
-        def pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/PipelineWrapper.groovy")
-        def processContextLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessContext_Script.groovy")
-        def processALoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessA_Script.groovy")
-        def processBLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessB_Script.groovy")
+        pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/PipelineWrapper.groovy")
+        processContextLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessContext_Script.groovy")
+        processALoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessA_Script.groovy")
+        processBLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessB_Script.groovy")
         def mainLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/Main_Script.groovy")
 
-        pipeline = initClass(pipelineLoader)
-        processContext = initClass(processContextLoader)
-        processA = initClass(processALoader, pipeline)
-        processB = initClass(processBLoader, pipeline)
-        //main should be the last, because the constructor sets up all inner classes,
-        //to be typed
-        main = initClass(mainLoader, classLoader)
+        main = initClass(mainLoader, classLoader, initClass(pipelineLoader))
     }
 
     private def loadClass(String filename) {
