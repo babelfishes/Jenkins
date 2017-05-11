@@ -2,14 +2,11 @@
 //TODO: Jenkinsfile Methoden typisieren
 
 node {
-   checkout scm
-   def functions = load 'src/main/groovy/functions.pipe'
-   functions()
-   echo functions.test1.testconstant
-   echo functions.test2.testconstant
-   functions.test1.useShell()
-   echo functions.test1.mvn
-   echo functions.test1.buildNumber
-   functions.test1.senMail()
+    checkout scm
 
+    def classLoaderLoad = load 'src/main/groovy/de/se/jenkinsfile/ClassLoader_Script.groovy'
+    classLoaderLoad()
+    def classLoader = classLoaderLoad.createInstance()
+    classLoader.loadClasses(classLoader,'.')
+    classLoader.main.run("this is my main process")
 }
