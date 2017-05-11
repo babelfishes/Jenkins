@@ -9,6 +9,7 @@ import de.se.jenkinsfile.ClassLoader
 
 /**
  * This class creates typed instances of given Classes for the main workflow.
+ * Therefore the main class could not be loaded here
  */
 class ClassLoaderProxy implements Serializable {
 

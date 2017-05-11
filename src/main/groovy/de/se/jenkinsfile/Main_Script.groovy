@@ -9,6 +9,9 @@ import de.se.jenkinsfile.ProcessB
 import de.se.jenkinsfile.ProcessContext
 
 
+/**
+ * Anythons in this class is typed, because all Classes ar loaded before
+ */
 class Main implements Serializable {
 
     ClassLoaderProxy classloader
@@ -20,30 +23,37 @@ class Main implements Serializable {
     }
 
     def run(name) {
-        ProcessA processA = classloader.createProcessA()
-        ProcessB processB = classloader.createProcessB()
 
         pipeline.stage name , {
             pipeline.parallel(p1: {
-                pipeline.echo "P1"
+                pipeline.echo "Parallel P1"
             }, p2: {
-                pipeline.echo "P2"
+                pipeline.echo "Parallel P2"
             })
         }
 
         pipeline.stage "processes" , {
+            ProcessA processA = classloader.createProcessA()
+
             ProcessContext processContext1 = classloader.createProcessContext()
-            processA.run("processA", processContext1)
-            processB.run("processA", processContext1)
+            processA.run("seqentiell processA", processContext1)
+
+            ProcessB processB = classloader.createProcessB()
+            processB.run("seqentiell processB", processContext1)
             //showing that the the context instance is modified by both
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
         }
 
-        pipeline.stage "processes 2. Run" , {
+        pipeline.stage "parallel processes" , {
             ProcessContext processContext1 = classloader.createProcessContext()
             ProcessContext processContext2 = classloader.createProcessContext()
-            processA.run("processA", processContext1)
-            processB.run("processA", processContext2)
+            pipeline.parallel(p11: {
+                ProcessA processA = classloader.createProcessA()
+                processA.run("Parallel processA", processContext1)
+            }, p22: {
+                ProcessB processB = classloader.createProcessB()
+                processB.run("Parallel processB", processContext2)
+            })
             //showing that the contextes are differnt
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
             pipeline.echo("[${processContext2.paramA}][${processContext2.paramB}]")

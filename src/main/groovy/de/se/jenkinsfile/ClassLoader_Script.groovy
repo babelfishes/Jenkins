@@ -20,7 +20,7 @@ class ClassLoader implements Serializable {
     def loadClasses(ClassLoader classLoader) {
         //loading all classes typeless
         //in the right order, so that every import statement could be fulfilled
-        pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/Pipeline.groovy")
+        pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/Pipeline_Script.groovy")
         processContextLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessContext_Script.groovy")
         processALoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessA_Script.groovy")
         processBLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessB_Script.groovy")
