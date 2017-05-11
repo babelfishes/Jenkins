@@ -9,12 +9,12 @@ import de.se.jenkinsfile.processes.ProcessContext
  * This class can create typed instances of Classes for the main workflow.
  * Therefore the main class could not be loaded here
  */
-class InstanceCreator implements Serializable {
+class Factory implements Serializable {
 
 
     ClassLoader loader
 
-    InstanceCreator(ClassLoader _loader) {
+    Factory(ClassLoader _loader) {
         loader = _loader
     }
 
@@ -33,8 +33,8 @@ class InstanceCreator implements Serializable {
  }
 
 
-InstanceCreator createInstance(ClassLoader loader) {
-    return new InstanceCreator(loader)
+Factory createInstance(ClassLoader loader) {
+    return new Factory(loader)
 }
 
 def call() {
