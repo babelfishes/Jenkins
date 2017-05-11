@@ -1,9 +1,17 @@
-//Jenkinsfile example
-//TODO: Jenkinsfile Methoden typisieren
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// A Jenkinsfile example using typed classes
+//    in Order to have all the IDE support you'll need to handle complex pipes.
+//  This file should be small!
+//   Anything complex should be done in typed classes inside the main(dot)run.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 node {
+    //maybe here' something more complex to do with the scm before you can start with the checked out Classes.
     checkout scm
 
+    //but when the programm logic starts, this code should be enough in this jenkinsfile
     def classLoaderLoad = load 'src/main/groovy/de/se/jenkinsfile/ClassLoader_Script.groovy'
     classLoaderLoad()
     def classLoader = classLoaderLoad.createInstance()
