@@ -2,24 +2,26 @@
 package de.se.jenkinsfile
 
 // import can be used, because these classes are loaded before
-import de.se.jenkinsfile.ClassLoader
+import de.se.jenkinsfile.ClassLoaderProxy
 import de.se.jenkinsfile.Pipeline
 import de.se.jenkinsfile.ProcessA
 import de.se.jenkinsfile.ProcessB
+import de.se.jenkinsfile.ProcessContext
+
 
 class Main implements Serializable {
 
-    ClassLoader classloader
+    ClassLoaderProxy classloader
     Pipeline pipeline
 
-    Main(ClassLoader _classloader, Pipeline _pipeline) {
+    Main(ClassLoaderProxy _classloader, Pipeline _pipeline) {
         classloader = _classloader
         pipeline = _pipeline
     }
 
     def run(name) {
-        ProcessA processA = classloader.processALoader.createInstance(pipeline)
-        ProcessB processB = classloader.processBLoader.createInstance(pipeline)
+        ProcessA processA = classloader.createProcessA()
+        ProcessB processB = classloader.createProcessB()
 
         pipeline.stage name , {
             pipeline.parallel(p1: {
@@ -30,7 +32,7 @@ class Main implements Serializable {
         }
 
         pipeline.stage "processes" , {
-            ProcessContext processContext1 = classloader.processContextLoader.createInstance()
+            ProcessContext processContext1 = classloader.createProcessContext()
             processA.run("processA", processContext1)
             processB.run("processA", processContext1)
             //showing that the the context instance is modified by both
@@ -38,8 +40,8 @@ class Main implements Serializable {
         }
 
         pipeline.stage "processes 2. Run" , {
-            ProcessContext processContext1 = classloader.processContextLoader.createInstance()
-            ProcessContext processContext2 = classloader.processContextLoader.createInstance()
+            ProcessContext processContext1 = classloader.createProcessContext()
+            ProcessContext processContext2 = classloader.createProcessContext()
             processA.run("processA", processContext1)
             processB.run("processA", processContext2)
             //showing that the contextes are differnt
@@ -52,7 +54,7 @@ class Main implements Serializable {
  }
 
 
-Main createInstance(ClassLoader classloader, Pipeline pipeline) {
+Main createInstance(ClassLoaderProxy classloader, Pipeline pipeline) {
     return new Main(classloader, pipeline)
 }
 

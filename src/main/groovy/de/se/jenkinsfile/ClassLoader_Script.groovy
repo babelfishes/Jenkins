@@ -10,6 +10,7 @@ class ClassLoader implements Serializable {
     def main
     def pipelineLoader
     def _this
+    def pipeline
 
     ClassLoader(def __this) {
         _this = __this
@@ -19,13 +20,16 @@ class ClassLoader implements Serializable {
     def loadClasses(ClassLoader classLoader) {
         //loading all classes typeless
         //in the right order, so that every import statement could be fulfilled
-        pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/PipelineWrapper.groovy")
+        pipelineLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/Pipeline.groovy")
         processContextLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessContext_Script.groovy")
         processALoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessA_Script.groovy")
         processBLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ProcessB_Script.groovy")
+        def classLoaderProxyLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/ClassLoaderProxy_Script.groovy")
         def mainLoader = loadClass("/home/debian-jenkins/IdeaProjects/Jenkinsfile/src/main/groovy/de/se/jenkinsfile/Main_Script.groovy")
 
-        main = initClass(mainLoader, classLoader, initClass(pipelineLoader))
+        pipeline = initClass(pipelineLoader)
+        def classLoaderProxy = initClass(classLoaderProxyLoader, classLoader)
+        main = initClass(mainLoader, classLoaderProxy, pipeline)
     }
 
     private def loadClass(String filename) {
