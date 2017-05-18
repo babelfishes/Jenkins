@@ -50,10 +50,10 @@ class Main implements Serializable {
             ProcessContext processContext2 = factory.createProcessContext()
             pipeline.parallel("${stageName}-p1": {
                 ProcessA processA = factory.createProcessA()
-                processA.run("${name}-processA", processContext1)
+                processA.run("${stageName}-processA", processContext1)
             }, "${stageName}-p2": {
                 ProcessB processB = factory.createProcessB()
-                processB.run("${name}-processB", processContext2)
+                processB.run("${stageName}-processB", processContext2)
             })
             //showing that the contextes are differnt
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
