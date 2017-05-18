@@ -15,9 +15,9 @@ class ProcessB implements Serializable {
     def run(String name, ProcessContext processContext) {
         processContext.paramA += "start ProcessB;"
         pipeline.stage name , {
-            pipeline.parallel(p1: {
+            pipeline.parallel("${name}-p1": {
                 pipeline.echo "P3"
-            }, p2: {
+            }, "${name}-p1": {
                 pipeline.echo "P4"
             })
         }

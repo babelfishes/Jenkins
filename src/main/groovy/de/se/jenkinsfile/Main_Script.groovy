@@ -26,9 +26,9 @@ class Main implements Serializable {
     def run(name) {
 
         pipeline.stage name , {
-            pipeline.parallel(p1: {
+            pipeline.parallel(Main1: {
                 pipeline.echo "Parallel P1"
-            }, p2: {
+            }, Main2: {
                 pipeline.echo "Parallel P2"
             })
         }
