@@ -25,22 +25,22 @@ class Main implements Serializable {
 
     def run(name) {
 
-        pipeline.stage "${name}-Stage1", {
-            pipeline.parallel("${name}-Stage1-p1": {
-                pipeline.echo "${name}-p1-line"
-            }, "${name}-p2": {
-                pipeline.echo "${name}-p2-line"
+        pipeline.stage "${name}-Stage1", { stageName ->
+            pipeline.parallel("${stageName}-Stage1-p1": {
+                pipeline.echo "${stageName}-p1-line"
+            }, "${stageName}-p2": {
+                pipeline.echo "${stageName}-p2-line"
             })
         }
 
-        pipeline.stage "${name}-Stage2" , {
+        pipeline.stage "${name}-Stage2" , { stageName ->
             ProcessA processA = factory.createProcessA()
 
             ProcessContext processContext1 = factory.createProcessContext()
-            processA.run("${name}-processA", processContext1)
+            processA.run("${stageName}-processA", processContext1)
 
             ProcessB processB = factory.createProcessB()
-            processB.run("${name}-processB", processContext1)
+            processB.run("${stageName}-processB", processContext1)
             //showing that the the context instance is modified by both
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
         }
