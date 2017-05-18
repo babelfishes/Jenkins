@@ -45,13 +45,13 @@ class Main implements Serializable {
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
         }
 
-        pipeline.stage "${name}-Stage3" , {
+        pipeline.stage "${name}-Stage3" , { stageName ->
             ProcessContext processContext1 = factory.createProcessContext()
             ProcessContext processContext2 = factory.createProcessContext()
-            pipeline.parallel("${name}-p1": {
+            pipeline.parallel("${stageName}-p1": {
                 ProcessA processA = factory.createProcessA()
                 processA.run("${name}-processA", processContext1)
-            }, "${name}-p2": {
+            }, "${stageName}-p2": {
                 ProcessB processB = factory.createProcessB()
                 processB.run("${name}-processB", processContext2)
             })
