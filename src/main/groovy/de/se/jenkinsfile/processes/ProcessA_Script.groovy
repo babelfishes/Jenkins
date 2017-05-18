@@ -16,9 +16,9 @@ class ProcessA implements Serializable {
         context.paramA += "start ProcessA;"
         pipeline.stage name , {
             pipeline.parallel("${name}-p1": {
-                pipeline.echo "P3"
+                pipeline.echo "${name}-p1-line"
             }, "${name}-p2": {
-                pipeline.echo "P4"
+                pipeline.echo "${name}-p2-line"
             })
         }
         context.paramA += "end ProcessA;"

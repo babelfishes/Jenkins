@@ -27,9 +27,9 @@ class Main implements Serializable {
 
         pipeline.stage name , {
             pipeline.parallel("${name}-p1": {
-                pipeline.echo "Parallel P1"
+                pipeline.echo "${name}-p1-line"
             }, "${name}-p2": {
-                pipeline.echo "Parallel P2"
+                pipeline.echo "${name}-p2-line"
             })
         }
 
@@ -48,10 +48,10 @@ class Main implements Serializable {
         pipeline.stage "parallel processes" , {
             ProcessContext processContext1 = factory.createProcessContext()
             ProcessContext processContext2 = factory.createProcessContext()
-            pipeline.parallel("${name}-p1": {
+            pipeline.parallel(p11: {
                 ProcessA processA = factory.createProcessA()
                 processA.run("Parallel processA", processContext1)
-            }, "${name}-p2": {
+            }, p22: {
                 ProcessB processB = factory.createProcessB()
                 processB.run("Parallel processB", processContext2)
             })
