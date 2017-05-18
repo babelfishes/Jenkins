@@ -20,7 +20,7 @@ class Pipeline implements Serializable{
     }
 
     def stage(def name, def closure) {
-        _this.stage "${name}", closure(name)
+        _this.stage "${name}", closure
     }
 
     def parallel(def closure) {

@@ -25,35 +25,35 @@ class Main implements Serializable {
 
     def run(name) {
 
-        pipeline.stage "${name}-Stage1", { stageName ->
-            pipeline.parallel("${stageName}-Stage1-p1": {
-                pipeline.echo "${stageName}-p1-line"
-            }, "${stageName}-p2": {
-                pipeline.echo "${stageName}-p2-line"
+        pipeline.stage "${name}-Stage1", {
+            pipeline.parallel("${name}-Stage1-p1": {
+                pipeline.echo "${name}-Stage1-p1-line"
+            }, "${name}-Stage1-p2": {
+                pipeline.echo "${name}-Stage1-p2-line"
             })
         }
 
-        pipeline.stage "${name}-Stage2" , { stageName ->
+        pipeline.stage "${name}-Stage2" , {
             ProcessA processA = factory.createProcessA()
 
             ProcessContext processContext1 = factory.createProcessContext()
-            processA.run("${stageName}-processA", processContext1)
+            processA.run("${name}-Stage2-processA", processContext1)
 
             ProcessB processB = factory.createProcessB()
-            processB.run("${stageName}-processB", processContext1)
+            processB.run("${name}-Stage2-processB", processContext1)
             //showing that the the context instance is modified by both
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
         }
 
-        pipeline.stage "${name}-Stage3" , { stageName ->
+        pipeline.stage "${name}-Stage3" , {
             ProcessContext processContext1 = factory.createProcessContext()
             ProcessContext processContext2 = factory.createProcessContext()
-            pipeline.parallel("${stageName}-p1": {
+            pipeline.parallel("${name}-Stage3-p1": {
                 ProcessA processA = factory.createProcessA()
-                processA.run("${stageName}-processA", processContext1)
-            }, "${stageName}-p2": {
+                processA.run("${name}-Stage3-processA", processContext1)
+            }, "${name}-Stage3-p2": {
                 ProcessB processB = factory.createProcessB()
-                processB.run("${stageName}-processB", processContext2)
+                processB.run("${name}-Stage3-processB", processContext2)
             })
             //showing that the contextes are differnt
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
