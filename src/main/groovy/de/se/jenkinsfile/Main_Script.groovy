@@ -26,9 +26,9 @@ class Main implements Serializable {
     def run(name) {
 
         pipeline.stage name , {
-            pipeline.parallel(Main1: {
+            pipeline.parallel("${name}-p1": {
                 pipeline.echo "Parallel P1"
-            }, Main2: {
+            }, "${name}-p2": {
                 pipeline.echo "Parallel P2"
             })
         }
@@ -48,10 +48,10 @@ class Main implements Serializable {
         pipeline.stage "parallel processes" , {
             ProcessContext processContext1 = factory.createProcessContext()
             ProcessContext processContext2 = factory.createProcessContext()
-            pipeline.parallel(p11: {
+            pipeline.parallel("${name}-p1": {
                 ProcessA processA = factory.createProcessA()
                 processA.run("Parallel processA", processContext1)
-            }, p22: {
+            }, "${name}-p2": {
                 ProcessB processB = factory.createProcessB()
                 processB.run("Parallel processB", processContext2)
             })
