@@ -25,35 +25,35 @@ class Main implements Serializable {
 
     def run(name) {
 
-        pipeline.stage name , {
-            pipeline.parallel("${name}-p1": {
+        pipeline.stage "${name}-Stage1", {
+            pipeline.parallel("${name}-Stage1-p1": {
                 pipeline.echo "${name}-p1-line"
             }, "${name}-p2": {
                 pipeline.echo "${name}-p2-line"
             })
         }
 
-        pipeline.stage "processes" , {
+        pipeline.stage "${name}-Stage2" , {
             ProcessA processA = factory.createProcessA()
 
             ProcessContext processContext1 = factory.createProcessContext()
-            processA.run("seqentiell processA", processContext1)
+            processA.run("${name}-processA", processContext1)
 
             ProcessB processB = factory.createProcessB()
-            processB.run("seqentiell processB", processContext1)
+            processB.run("${name}-processB", processContext1)
             //showing that the the context instance is modified by both
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
         }
 
-        pipeline.stage "parallel processes" , {
+        pipeline.stage "${name}-Stage3" , {
             ProcessContext processContext1 = factory.createProcessContext()
             ProcessContext processContext2 = factory.createProcessContext()
-            pipeline.parallel(p11: {
+            pipeline.parallel("${name}-p1": {
                 ProcessA processA = factory.createProcessA()
-                processA.run("Parallel processA", processContext1)
-            }, p22: {
+                processA.run("${name}-processA", processContext1)
+            }, "${name}-p2": {
                 ProcessB processB = factory.createProcessB()
-                processB.run("Parallel processB", processContext2)
+                processB.run("${name}-processB", processContext2)
             })
             //showing that the contextes are differnt
             pipeline.echo("[${processContext1.paramA}][${processContext1.paramB}]")
