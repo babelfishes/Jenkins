@@ -12,7 +12,7 @@ node {
     checkout scm
 
     //but when the programm logic starts, this code should be enough in this jenkinsfile
-    def classLoaderLoad = load 'src/main/groovy/de/se/jenkinsfile/ClassLoader_Script.groovy'
+    def classLoaderLoad = load 'src/main/groovy/de/se/jenkinsfile/classloader/ClassLoader_Script.groovy'
     classLoaderLoad()
     def classLoader = classLoaderLoad.createInstance()
     classLoader.loadClasses(classLoader,'.')
